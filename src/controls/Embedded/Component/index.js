@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { stopPropagation } from '../../../utils/common';
 import Option from '../../../components/Option';
+import Icon from '../../../components/Icon';
 import './styles.css';
 
 class LayoutComponent extends Component {
@@ -144,7 +145,7 @@ class LayoutComponent extends Component {
           onClick={onExpandEvent}
           title={title || translations['components.controls.embedded.embedded']}
         >
-          <img src={icon} alt="" />
+          <Icon src={icon} />
         </Option>
         {expanded ? this.rendeEmbeddedLinkModal() : undefined}
       </div>

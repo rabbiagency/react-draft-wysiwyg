@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { stopPropagation } from '../../../utils/common';
 import Option from '../../../components/Option';
+import Icon from '../../../components/Icon';
 import './styles.css';
 
 class LayoutComponent extends Component {
@@ -118,8 +119,11 @@ class LayoutComponent extends Component {
           title || translations['components.controls.colorpicker.colorpicker']
         }
       >
-        <Option onClick={onExpandEvent} className={classNames(className)}>
-          <img src={icon} alt="" />
+        <Option
+          onClick={onExpandEvent}
+          className={classNames(className)}
+        >
+          <Icon src={icon} />
         </Option>
         {expanded ? this.renderModal() : undefined}
       </div>

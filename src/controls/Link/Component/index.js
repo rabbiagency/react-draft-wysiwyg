@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { stopPropagation } from '../../../utils/common';
 import { getFirstIcon } from '../../../utils/toolbar';
+import Icon from '../../../components/Icon';
 import Option from '../../../components/Option';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
@@ -171,35 +172,26 @@ class LayoutComponent extends Component {
     } = this.props;
     const { showModal } = this.state;
     return (
-      <div
-        className={classNames('rdw-link-wrapper', className)}
-        aria-label="rdw-link-control"
-      >
-        {options.indexOf('link') >= 0 && (
-          <Option
-            value="unordered-list-item"
-            className={classNames(link.className)}
-            onClick={this.signalExpandShowModal}
-            aria-haspopup="true"
-            aria-expanded={showModal}
-            title={link.title || translations['components.controls.link.link']}
-          >
-            <img src={link.icon} alt="" />
-          </Option>
-        )}
-        {options.indexOf('unlink') >= 0 && (
-          <Option
-            disabled={!currentState.link}
-            value="ordered-list-item"
-            className={classNames(unlink.className)}
-            onClick={this.removeLink}
-            title={
-              unlink.title || translations['components.controls.link.unlink']
-            }
-          >
-            <img src={unlink.icon} alt="" />
-          </Option>
-        )}
+      <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
+        {options.indexOf('link') >= 0 && <Option
+          value="unordered-list-item"
+          className={classNames(link.className)}
+          onClick={this.signalExpandShowModal}
+          aria-haspopup="true"
+          aria-expanded={showModal}
+          title={link.title || translations['components.controls.link.link']}
+        >
+          <Icon src={link.icon} />
+        </Option>}
+        {options.indexOf('unlink') >= 0 && <Option
+          disabled={!currentState.link}
+          value="ordered-list-item"
+          className={classNames(unlink.className)}
+          onClick={this.removeLink}
+          title={unlink.title || translations['components.controls.link.unlink']}
+        >
+          <Icon src={unlink.icon} />
+        </Option>}
         {expanded && showModal ? this.renderAddLinkModal() : undefined}
       </div>
     );
@@ -242,33 +234,22 @@ class LayoutComponent extends Component {
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
         >
-          <img src={getFirstIcon(config)} alt="" />
-          {options.indexOf('link') >= 0 && (
-            <DropdownOption
-              onClick={this.forceExpandAndShowModal}
-              className={classNames('rdw-link-dropdownoption', link.className)}
-              title={
-                link.title || translations['components.controls.link.link']
-              }
-            >
-              <img src={link.icon} alt="" />
-            </DropdownOption>
-          )}
-          {options.indexOf('unlink') >= 0 && (
-            <DropdownOption
-              onClick={this.removeLink}
-              disabled={!currentState.link}
-              className={classNames(
-                'rdw-link-dropdownoption',
-                unlink.className
-              )}
-              title={
-                unlink.title || translations['components.controls.link.unlink']
-              }
-            >
-              <img src={unlink.icon} alt="" />
-            </DropdownOption>
-          )}
+          <Icon src={getFirstIcon(config)} />
+          {options.indexOf('link') >= 0 && <DropdownOption
+            onClick={this.forceExpandAndShowModal}
+            className={classNames('rdw-link-dropdownoption', link.className)}
+            title={link.title || translations['components.controls.link.link']}
+          >
+            <Icon src={link.icon} />
+          </DropdownOption>}
+          {options.indexOf('unlink') >= 0 && <DropdownOption
+            onClick={this.removeLink}
+            disabled={!currentState.link}
+            className={classNames('rdw-link-dropdownoption', unlink.className)}
+            title={unlink.title || translations['components.controls.link.unlink']}
+          >
+            <Icon src={unlink.icon} />
+          </DropdownOption>}
         </Dropdown>
         {expanded && showModal ? this.renderAddLinkModal() : undefined}
       </div>

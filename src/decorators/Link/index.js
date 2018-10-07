@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ensureSafeUrl } from '../../utils/url'
 import openlink from '../../../images/openlink.svg';
+import Icon from '../../components/Icon';
 import './styles.css';
 
 function findLinkEntities(contentBlock, callback, contentState) {
@@ -59,9 +60,8 @@ function getLinkComponent(config) {
         >
           <a href={ensureSafeUrl(url)} target={targetOption}>{children}</a>
           {showPopOver && showOpenOptionOnHover ?
-            <img
-              src={openlink}
-              alt=""
+            <Icon 
+              src={openlink} 
               onClick={this.openLink}
               className="rdw-link-decorator-icon"
             />
